@@ -1,0 +1,35 @@
+services:
+  newspaper:
+    command: "npm run dev"
+    # TODO: custom websocket port -> https://github.com/remix-run/remix/issues/2620
+    # environment:
+    # - REMIX_DEV_SERVER_WS_PORT=${NEWSPAPER_DEVPORT:-8002}
+    tty: true
+    volumes:
+      - "./newspaper:/opt/app"
+      - "newspaper:/opt/app/node_modules/"
+    ports:
+      - ${NEWSPAPER_DEVPORT:-8002}:${NEWSPAPER_DEVPORT:-8002}
+      - ${NEWSPAPER_PRISMASTUDIOPORT:-5555}:5555
+
+  bootstrap:
+    build:
+      context: "./"
+      dockerfile: "./bootstrap/Dockerfile"
+    env_file:
+      - .env
+      - ./newspaper/.env
+    command: "npm run prisma:migrate"
+    tty: true
+    depends_on:
+      - "postgres"
+    volumes:
+      - "./bootstrap/inventory:/opt/app/inventory"
+      - "./newspaper/prisma:/opt/app/prisma"
+      - "./newspaper/.env:/opt/app/.env"
+      - "bootstrap:/opt/app/node_modules/"
+    profiles: ["bootstrap"]
+
+volumes:
+  newspaper:
+  bootstrap:

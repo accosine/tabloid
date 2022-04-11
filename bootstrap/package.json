@@ -1,0 +1,28 @@
+{
+  "name": "bootstrap",
+  "private": true,
+  "description": "A bootstrapping container",
+  "license": "",
+  "scripts": {
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.12.0",
+    "@types/node": "^17.0.23",
+    "esbuild-register": "^3.3.2",
+    "gray-matter": "^4.0.3",
+    "minio": "^7.0.27",
+    "prisma": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {
+    "@types/minio": "^7.0.12"
+  }
+}

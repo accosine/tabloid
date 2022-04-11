@@ -1,0 +1,13 @@
+.history
+node_modules
+.DS_Store
+/.cache
+/build
+/public/build
+.env
+.history
+newspaper/.cache
+newspaper/build
+newspaper/public/build
+newspaper/public
+bootstrap/inventory

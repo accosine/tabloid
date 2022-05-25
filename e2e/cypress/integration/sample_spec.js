@@ -5,6 +5,6 @@ describe("My First Test", () => {
 });
 describe("My First REAL Test", () => {
   it("Visits the Kitchen Sink", () => {
-    cy.visit("http://localhost:3001/");
+    cy.visit("/");
   });
 });

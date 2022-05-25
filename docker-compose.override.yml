@@ -35,7 +35,7 @@ services:
     depends_on:
       - newspaper
     environment:
-      - CYPRESS_baseUrl=http://newspaper:3001
+      - CYPRESS_baseUrl=http://newspaper:3000
     command: npm run cypress:run
     profiles: ["bootstrap"]
     platform: linux/amd64

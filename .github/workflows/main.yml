@@ -27,7 +27,7 @@ jobs:
       # run utility services in the background
       # using docker-compose (see docker-compose.yml file)
       - name: Run docker-compose
-        run: docker-compose --profile bootstrap up --exit-code-from cypress
+        run: docker-compose --profile bootstrap up --abort-on-container-exit --exit-code-from cypress
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       # - name: Cypress run

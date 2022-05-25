@@ -1,0 +1,40 @@
+name: Cypress Tests
+
+on: [push]
+
+# defaults:
+#   run:
+#     working-directory: dart_project
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download ootstrap inventory
+        run: wget https://github.com/accosine/tabloid/releases/download/v0.0.0-experimental/bootstrap.tar.gz
+      - name: Extract bootstrap inventory
+        run: tar -zxvf bootstrap.tar.gz bootstrap/inventory
+      #  working-directory: dart_project
+      - name: List bootstrap inventory
+        run: ls bootstrap/inventory
+      - name: Setup Docker environment variables
+        run: cp .env.example .env
+      - name: Setup Prisma environment variables
+        run: cp .env.example .env
+        working-directory: newspaper
+      # run utility services in the background
+      # using docker-compose (see docker-compose.yml file)
+      - name: Run docker-compose
+        run: docker-compose --profile bootstrap up -d
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          project: ./e2e
+          build: npm run build
+          wait-on: "http://localhost:3001"
+          wait-on-timeout: 120
+          start: npm start

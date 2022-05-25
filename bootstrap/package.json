@@ -1,8 +1,9 @@
 {
   "name": "bootstrap",
   "private": true,
-  "description": "A bootstrapping container",
-  "license": "",
+  "author": "Duncan Kolba",
+  "license": "Apache-2.0",
+  "description": "A bootstrapping container for tabloid",
   "scripts": {
     "prisma:migrate": "prisma migrate dev --name init",
     "prisma:generate": "prisma generate",

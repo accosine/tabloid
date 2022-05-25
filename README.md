@@ -100,5 +100,9 @@ Get all items from ampMedia table (with stroyprisma schema):
 There's a bug with Docker on M1 Macs which prevents PostgreSQL from being seen on the Docker network via hostname. Until this gets fixed https://github.com/prisma/prisma/issues/12598 work around this as follows:
 
     # Get the IP of the PostgreSQL docker contianer
-    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tabloid_postgres_1
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tabloid-postgres-1
     # Replace the hostname of the Postgres container with the IP in the newspaper/.env file
+
+# LICENSE
+
+Tabloid is licensed under the terms of the Apache 2.0 License. See [LICENSE](LICENSE) for more information.

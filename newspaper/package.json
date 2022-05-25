@@ -1,8 +1,9 @@
 {
-  "name": "remix-app-template",
+  "name": "newspaper",
+  "description": "Newspaper, a frontend for Tabloid",
+  "author": "Duncan Kolba",
+  "license": "Apache-2.0",
   "private": true,
-  "description": "",
-  "license": "",
   "sideEffects": false,
   "scripts": {
     "build": "cross-env NODE_ENV=production remix build",

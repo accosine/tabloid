@@ -30,6 +30,19 @@ services:
       - "bootstrap:/opt/app/node_modules/"
     profiles: ["bootstrap"]
 
+  cypress:
+    image: cypress/included:9.7.0
+    depends_on:
+      - newspaper
+    environment:
+      - CYPRESS_baseUrl=http://newspaper:3001
+    command: npm run cypress:run
+    profiles: ["bootstrap"]
+    platform: linux/amd64
+    volumes:
+      - ./e2e/cypress:/cypress
+      - ./e2e/cypress.json:/cypress.json
+
 volumes:
   newspaper:
   bootstrap:

@@ -5,9 +5,9 @@ services:
     # environment:
     # - REMIX_DEV_SERVER_WS_PORT=${NEWSPAPER_DEVPORT:-8002}
     tty: true
-    volumes:
-      # - "./newspaper:/opt/app"
-      # - "newspaper:/opt/app/node_modules/"
+    # volumes:
+    # - "./newspaper:/opt/app"
+    # - "newspaper:/opt/app/node_modules/"
     ports:
       - ${NEWSPAPER_DEVPORT:-8002}:${NEWSPAPER_DEVPORT:-8002}
       - ${NEWSPAPER_PRISMASTUDIOPORT:-5555}:5555
@@ -44,5 +44,5 @@ services:
       - ./e2e/cypress.json:/cypress.json
 
 volumes:
-  newspaper:
+  # newspaper:
   bootstrap:

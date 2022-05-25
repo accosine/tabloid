@@ -12,24 +12,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # - name: Download bootstrap inventory
-      #   run: wget https://github.com/accosine/tabloid/releases/download/v0.0.0-experimental/bootstrap.tar.gz
-      # - name: Extract bootstrap inventory
-      #   run: tar -zxvf bootstrap.tar.gz bootstrap/inventory
-      # #  working-directory: dart_project
-      # - name: List bootstrap inventory
-      #   run: ls bootstrap/inventory
-      # - name: Setup Docker environment variables
-      #   run: cp .env.example .env
-      # - name: Setup Prisma environment variables
-      #   run: cp .env.example .env
-      #   working-directory: newspaper
-      # # run utility services in the background
-      # # using docker-compose (see docker-compose.yml file)
-      # - name: Run docker-compose
-      #   run: docker-compose --profile bootstrap up -d
-      # # Install NPM dependencies, cache them correctly
-      # # and run all Cypress tests
+      - name: Download bootstrap inventory
+        run: wget https://github.com/accosine/tabloid/releases/download/v0.0.0-experimental/bootstrap.tar.gz
+      - name: Extract bootstrap inventory
+        run: tar -zxvf bootstrap.tar.gz bootstrap/inventory
+      #  working-directory: dart_project
+      - name: List bootstrap inventory
+        run: ls bootstrap/inventory
+      - name: Setup Docker environment variables
+        run: cp .env.example .env
+      - name: Setup Prisma environment variables
+        run: cp .env.example .env
+        working-directory: newspaper
+      # run utility services in the background
+      # using docker-compose (see docker-compose.yml file)
+      - name: Run docker-compose
+        run: docker-compose --profile bootstrap up -d
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:

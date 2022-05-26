@@ -19,14 +19,14 @@ jobs:
       - name: Setup Prisma environment variables
         run: cp .env.example .env
         working-directory: newspaper
-        # run utility stack in the background
-        # using docker-compose (see docker-compose.yml file)
       - name: Run docker-compose
+        # run web stack in the background via docker-compose
+        # check docker-compose.ci.yml file for reference
         run: docker-compose --profile bootstrap up -d
         # run: docker-compose --profile bootstrap up --abort-on-container-exit --exit-code-from cypress
-        # Install NPM dependencies, cache them correctly
-        # and run all Cypress tests
+
       - name: Cypress run
+        # Install NPM dependencies and run all Cypress tests
         uses: cypress-io/github-action@v2
         with:
           wait-on: "http://localhost:3001"
@@ -34,17 +34,17 @@ jobs:
           start: npm run ci
           working-directory: e2e
           config: pageLoadTimeout=100000,baseUrl=http://localhost:3001
+      - uses: actions/upload-artifact@v2
         # after the test run completes
         # store videos and any screenshots
         # NOTE: screenshots will be generated only if an E2E test failed
         # thus we store screenshots only on failures
-      - uses: actions/upload-artifact@v2
         if: failure()
         with:
           name: cypress-screenshots
           path: e2e/cypress/screenshots
-      # Test run video was always captured, so this action uses "always()" condition
       - uses: actions/upload-artifact@v2
+        # Test run video was always captured, so this action uses "always()" condition
         if: always()
         with:
           name: cypress-videos

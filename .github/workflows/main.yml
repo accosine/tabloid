@@ -6,26 +6,24 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🏧
         uses: actions/checkout@v2
-      - name: Download bootstrap inventory
+      - name: Download bootstrap inventory 📥
         run: wget https://github.com/accosine/tabloid/releases/download/v0.0.0-experimental/bootstrap.tar.gz
-      - name: Extract bootstrap inventory
+      - name: Extract bootstrap inventory 📤
         run: tar -zxvf bootstrap.tar.gz bootstrap/inventory
-      - name: List bootstrap inventory
-        run: ls bootstrap/inventory
-      - name: Setup Docker environment variables
+      - name: Setup Docker environment variables 📝
         run: cp .env.example .env
-      - name: Setup Prisma environment variables
+      - name: Setup Prisma environment variables 📝
         run: cp .env.example .env
         working-directory: newspaper
-      - name: Run docker-compose
+      - name: Run docker-compose 🐳
         # run web stack in the background via docker-compose
         # check docker-compose.ci.yml file for reference
         run: docker-compose --profile bootstrap up -d
         # run: docker-compose --profile bootstrap up --abort-on-container-exit --exit-code-from cypress
 
-      - name: Cypress run
+      - name: Cypress run 🧪
         # Install NPM dependencies and run all Cypress tests
         uses: cypress-io/github-action@v2
         with:

@@ -28,18 +28,19 @@ services:
       - "./newspaper/prisma:/opt/app/prisma"
       - "./newspaper/.env:/opt/app/.env"
       - "bootstrap:/opt/app/node_modules/"
+    # profiles: ["bootstrap"]
 
-  cypress:
-    image: cypress/included:9.7.0
-    depends_on:
-      - newspaper
-    environment:
-      - CYPRESS_BASE_URL=http://newspaper:3000
-    command: npm run cypress:run
-    platform: linux/amd64
-    volumes:
-      - ./e2e/cypress:/cypress
-      - ./e2e/cypress.json:/cypress.json
+  # cypress:
+  #   image: cypress/included:9.7.0
+  #   depends_on:
+  #     - newspaper
+  #   environment:
+  #     - CYPRESS_BASE_URL=http://newspaper:3000
+  #   command: npm run cypress:run
+  #   platform: linux/amd64
+  #   volumes:
+  #     - ./e2e/cypress:/cypress
+  #     - ./e2e/cypress.json:/cypress.json
 
 volumes:
   # newspaper:

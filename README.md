@@ -9,10 +9,21 @@ As if Web Stories and Remix had a baby 🕸👓💿🍼.
 
 ## QUICKSTART
 
-    # Bring the whole stack up
+Copy Docker example dotenv environment variable files
+
+    cp .env.example .env
+
+Copy Prisma example dotenv environment variable files
+
+    cp ./newspaper/.env.example ./newspaper/.env
+
+Bring the whole stack up
+
     docker-compose up
-    # Fill the bootstrap/inventory folder with MP4 videos
-    # Then seed the database and static file storage with example data
+
+Fill the bootstrap/inventory folder with MP4 videos
+Then seed the database and static file storage with example data
+
     docker-compose --profile bootstrap up
 
 ## ABOUT

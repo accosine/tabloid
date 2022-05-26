@@ -27,13 +27,15 @@ jobs:
       # run utility services in the background
       # using docker-compose (see docker-compose.yml file)
       - name: Run docker-compose
-        run: docker-compose --profile bootstrap up --abort-on-container-exit --exit-code-from cypress
+        run: docker-compose --profile bootstrap up -d
+      # run: docker-compose --profile bootstrap up --abort-on-container-exit --exit-code-from cypress
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     wait-on: "http://localhost:3001"
-      #     wait-on-timeout: 120
-      #     start: npm run cypress:run
-      #     working-directory: e2e
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          wait-on: "http://localhost:3001"
+          wait-on-timeout: 120
+          start: npm run cypress:run
+          working-directory: e2e
+          config: pageLoadTimeout=100000,baseUrl=http://localhost:3001

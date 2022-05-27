@@ -5,9 +5,9 @@ services:
     # environment:
     # - REMIX_DEV_SERVER_WS_PORT=${NEWSPAPER_DEVPORT:-8002}
     tty: true
-    # volumes:
-    # - "./newspaper:/opt/app"
-    # - "newspaper:/opt/app/node_modules/"
+    volumes:
+      - "./newspaper:/opt/app"
+      - "newspaper:/opt/app/node_modules/"
     ports:
       - ${NEWSPAPER_DEVPORT:-8002}:${NEWSPAPER_DEVPORT:-8002}
       - ${NEWSPAPER_PRISMASTUDIOPORT:-5555}:5555
@@ -28,20 +28,8 @@ services:
       - "./newspaper/prisma:/opt/app/prisma"
       - "./newspaper/.env:/opt/app/.env"
       - "bootstrap:/opt/app/node_modules/"
-    # profiles: ["bootstrap"]
-
-  # cypress:
-  #   image: cypress/included:9.7.0
-  #   depends_on:
-  #     - newspaper
-  #   environment:
-  #     - CYPRESS_BASE_URL=http://newspaper:3000
-  #   command: npm run cypress:run
-  #   platform: linux/amd64
-  #   volumes:
-  #     - ./e2e/cypress:/cypress
-  #     - ./e2e/cypress.json:/cypress.json
+    profiles: ["bootstrap"]
 
 volumes:
-  # newspaper:
+  newspaper:
   bootstrap:
